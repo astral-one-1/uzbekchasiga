@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body>
+
+<!-- Mobile Toggle -->
+<button class="mobile-nav-toggle" onclick="toggleSidebar()">☰</button>
+
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<div class="d-flex">
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="p-4">
+            <h3 class="brand-title">Admin Panel</h3>
+        </div>
+
+        <a href="{% url 'admin_dashboard' %}" 
+           class="nav-link {% if request.resolver_match.url_name == 'admin_dashboard' %}active{% endif %}">
+            Dashboard
+        </a>
+
+        <a href="{% url 'modules' %}" 
+           class="nav-link {% if request.resolver_match.url_name == 'modules' %}active{% endif %}">
+            Modules
+        </a>
+
+        <a href="{% url 'admin_profile' %}" 
+           class="nav-link {% if request.resolver_match.url_name == 'admin_profile' %}active{% endif %}">
+            Profile
+        </a>
+
+        <a href="{% url 'logout' %}" class="nav-link">
+            Logout
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content flex-fill">
+        {% block content %}{% endblock %}
+    </div>
+
+</div>
+
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("show");
+    document.querySelector(".sidebar-overlay").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

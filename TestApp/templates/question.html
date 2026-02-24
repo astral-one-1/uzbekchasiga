@@ -1,0 +1,44 @@
+{% extends "bace.html" %}
+{% block title %}Test{% endblock %}
+
+{% block content %}
+
+<h3 class="page-title mb-4">{{ module.name }}</h3>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {% for question in questions %}
+    {% if not question %}
+    <p> <i>Hali ushbu modulda testlar mavjud emas!</i></p>
+    {% endif %}
+    <div class="card test-card mb-4">
+        <div class="card-body">
+            <h5>{{ forloop.counter }}. {{ question.text|linebreaks }}</h5>
+
+            {% for answer in question.answer_set.all %}
+            <div class="form-check mt-2">
+                <input class="form-check-input"
+                       type="radio"
+                       name="question_{{ question.id }}"
+                       value="{{ answer.id }}"
+                       required>
+
+                <label class="form-check-label">
+                    {{ answer.text }}
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary">
+            Testni yakunlash
+        </button>
+    </div>
+
+</form>
+
+{% endblock %}

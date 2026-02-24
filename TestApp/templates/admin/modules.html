@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}
+{% block content %}
+
+<h2 class="page-title mb-4">Modules</h2>
+
+<div class="welcome-card">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="d-flex gap-3">
+            <input type="text" name="title" 
+                   class="form-control"
+                   placeholder="Modul nomi..." required>
+            <button class="btn-primary">Qo‘shish</button>
+        </div>
+    </form>
+</div>
+
+<div class="stat-card p-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nomi</th>
+                <th>Sana</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for module in modules %}
+            <tr>
+                <td>{{ module.title }}</td>
+                <td>{{ module.created_at }}</td>
+                <td>
+                    <a href="#" class="btn-outline-primary btn-sm">Edit</a>
+                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Modul yo‘q</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

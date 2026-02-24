@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% block content %}
+
+<h2 class="page-title mb-4">Profile</h2>
+
+<div class="welcome-card text-center">
+
+    <div class="avatar-circle">
+        {{ user.username|first|upper }}
+    </div>
+
+    <h4>{{ user.username }}</h4>
+    <p class="text-muted">
+        {{ user.is_admin|yesno:"Administrator,Oddiy foydalanuvchi" }}
+    </p>
+
+    <button class="btn-primary mt-3">
+        Parolni o‘zgartirish
+    </button>
+
+</div>
+
+{% endblock %}
