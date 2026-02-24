@@ -33,9 +33,16 @@ SESSION_COOKIE_SECURE = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 X_FRAME_OPTIONS = 'DENY'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_ROOT = BASE_DIR / 'mediafiles'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# STATIC
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"      # collectstatic chiqadigan papka
+STATICFILES_DIRS = [BASE_DIR / "static"]    # loyihadagi statik fayllar
+
+# MEDIA (agar fayllarni upload qiladigan bo‘lsangiz)
+MEDIA_URL = '/media/'
 # Application definition
 
 INSTALLED_APPS = [
