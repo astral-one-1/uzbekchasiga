@@ -1,7 +1,7 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from TestApp import views
-import include
+
 
 app_name = "TestApp"  # namespace ishlatish uchun
 
