@@ -26,9 +26,9 @@ DEBUG = True
 ALLOWED_HOSTS = ["161.35.225.173"]  # yoki domeningizni ham qo'shing
 
 # Security settings
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 X_FRAME_OPTIONS = 'DENY'
 
 # Application definition
