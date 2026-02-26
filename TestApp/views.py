@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Person, TestResult, TestModule, Question, Answer
 from django.contrib.auth.hashers import make_password, check_password
+from django.views.decorators.csrf import csrf_exempt
+
 # - - - - - -  - - -- -  - - -  LOGIN - -  - - - - - --  -- - - - 
 from django.db.models import Avg, Max
-
+@csrf_exempt
 def login(request):
     html = "login.html"
     if request.method == "POST":
@@ -28,7 +30,7 @@ def login(request):
 
     return render(request, html)
 # - - -  - -- - - -  --  - - - - - - -- - - - - - - - --  - -- -  -
-
+@csrf_exempt
 def admin_reqiured(views_func):
     def wrapper(request, *args, **kwargs):
         user_id = request.session.get("user_id")
@@ -43,7 +45,7 @@ def admin_reqiured(views_func):
         return views_func(request, *args, **kwargs)
     return wrapper
 
-
+@csrf_exempt
 @admin_reqiured
 def admin_dashboard(request):
     search = request.GET.get("q")
@@ -59,7 +61,7 @@ def admin_dashboard(request):
     })
 
 
-
+@csrf_exempt
 def admin_user_profile(request, user_id):
     user = Person.objects.get(id=user_id)
     results = TestResult.objects.filter(user=user)
@@ -69,7 +71,7 @@ def admin_user_profile(request, user_id):
         "results": results
     })
 
-
+@csrf_exempt
 def admin_dashboard(request):
     user_id = request.session.get("user_id")
 
@@ -93,7 +95,7 @@ def admin_dashboard(request):
     return render(request, "admin_d.html", context)
 
 # -------- - - - - - - - Register - - - -- - -  - - - - - - - -
-
+@csrf_exempt
 def give_admin(request, user_id):
     user = Person.objects.get(id = user_id)
     user.is_admin = True
@@ -122,16 +124,16 @@ def signin(request):
 
     return render(request, "signin.html")
 # - - --  - - - - - - - - --  - - -  - - - -  - - - - - - -- 
-
+@csrf_exempt
 def logout_view(request):
     request.session.flush()
     return redirect("TestApp:home")
-
+@csrf_exempt
 def home(request):
     if request.session.get("user_id"):
         return redirect("TestApp:dashboard")
     return render(request, "home.html", {})
-
+@csrf_exempt
 # Dashboard
 def user_dashboard(request):
     user_id = request.session.get("user_id")
@@ -161,7 +163,7 @@ def user_dashboard(request):
 
 
 
-
+@csrf_exempt
 def admin_dashboard(request):
     user_id = request.session.get("user_id")
 
@@ -185,8 +187,8 @@ def admin_dashboard(request):
     return render(request, "admin/dashboard.html", context)
 
 
-
-# Tests
+@csrf_exempt
+# Tests@csrf_exempt
 def tests(request):
     
     user_id = request.session.get("user_id")
@@ -200,7 +202,7 @@ def tests(request):
     context = {"modules":modules, "user":user,}
     return render(request, "tests.html", context)
 
-
+@csrf_exempt
 def start_test(request, module_id):
     user_id = request.session.get("user_id")
     if not user_id:
@@ -236,7 +238,7 @@ def start_test(request, module_id):
 
     
 
-
+@csrf_exempt
 def my_result(request):
     user_id = request.session.get("user_id")
     if not user_id:
@@ -269,7 +271,7 @@ def my_result(request):
 
 
 
-
+@csrf_exempt
 def profile(self):
     user_id = self.session.get('user_id')
     if not user_id:
