@@ -88,8 +88,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-LANGUAGE_CODE = 'uzb'
-TIME_ZONE = 'uzb'
+LANGUAGE_CODE = 'us-en'
+TIME_ZONE = 'UTS'
 USE_I18N = True
 USE_TZ = True
 
