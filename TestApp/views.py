@@ -100,7 +100,7 @@ def give_admin(request, user_id):
     user = Person.objects.get(id = user_id)
     user.is_admin = True
     user.save()
-
+@csrf_exempt
 def signin(request):
     if request.method == "POST":
         name = request.POST.get("name")
