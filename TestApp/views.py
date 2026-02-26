@@ -286,10 +286,11 @@ def profile(self):
         user.save()
         return redirect("TestApp:profile")
     
-    
+    modules = TestModule.objects.all()
     test_results = TestResult.objects.filter(user=user)
     total_tests = test_results.count()
     avg_score = round(sum([r.score for r in test_results])/total_tests,2) if total_tests>0 else 0
+    models_soni = modules.count()
     context = {
         "user":user,
         "total_tests" : total_tests,
