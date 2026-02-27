@@ -94,10 +94,12 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"      # collectstatic chiqadigan papka
-STATICFILES_DIRS = [BASE_DIR / "static"]    # loyihadagi statik fayllar
-
+STATIC_URL = 'static/'
+STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    
+]
 # Media files (upload qilingan fayllar)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
