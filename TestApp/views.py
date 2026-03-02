@@ -260,6 +260,7 @@ def my_result(request):
     last_score = last_result.score if last_result else 0
     soni = modules.count()
     context = {
+        "modules" : modules.modules,
         "soni" : soni,
         "user":user,
         "total_stets" : total_tests,
