@@ -130,9 +130,17 @@ def logout_view(request):
     return redirect("TestApp:home")
 @csrf_exempt
 def home(request):
+    user = Person.login.count()
+    test = TestModule.title.count()
+    result = TestResult.user.count()
     if request.session.get("user_id"):
         return redirect("TestApp:dashboard")
-    return render(request, "home.html", {})
+    contex = {
+        "user" : user,
+        "test" : test,
+        "result" : result,
+    }
+    return render(request, "home.html", contex)
 @csrf_exempt
 # Dashboard
 def user_dashboard(request):
