@@ -253,6 +253,7 @@ def my_result(request):
         best_score = Max("score")
     )    
     modules = TestModule.objects.all()
+    #modul = modules.modue
     avg_score = round(stats["avg_score"], 2) if stats["avg_score"] else 0
     best_score = stats["best_score"] if stats["best_score"] else 0
 
@@ -260,7 +261,7 @@ def my_result(request):
     last_score = last_result.score if last_result else 0
     soni = modules.count()
     context = {
-        "modules" : modules.modules,
+        "modules" : modules.module,
         "soni" : soni,
         "user":user,
         "total_stets" : total_tests,
