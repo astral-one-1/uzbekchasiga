@@ -23,7 +23,7 @@ SECRET_KEY = 'django-insecure-8@tsxp)3dz8133up58^ecxwqxaw!j+*)1sy5td_w6tyru#5(hb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["161.35.225.173"]  # yoki domeningizni ham qo'shing
+ALLOWED_HOSTS = ["103.252.118.55"]  # yoki domeningizni ham qo'shing
 
 # Security settings
 CSRF_COOKIE_SECURE = False
